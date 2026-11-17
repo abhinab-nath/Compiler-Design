@@ -1,0 +1,73 @@
+--> running LEX program:
+    flex program_name.l
+    gcc lex.yy.c
+    .\a.exe            (for powershell)
+________________________________
+--> running YACC program:
+    flex program_name.y
+    bison -dy program_name.y
+    gcc lex.yy.c y.tab.c
+    .\a.exe
+________________________________
+# LEX used for lexical analysis.
+# YACC used for syntax analysis.
+________________________________
+@-> What is LEX?
+LEX is a tool used to generate a lexical analyzer or scanner.
+It identifies tokens from input using patterns written as regular expressions.
+________________________________
+# Working of LEX: 
+1. We write rules in a .l file.
+2. LEX reads the file.
+3. It generates a C source file named lex.yy.c.
+4. GCC compiles that C file.
+5. We execute the generated program.
+________________________________
+# Structure:-
+%{
+    C declarations (Contains C header files and variable declarations)
+%}
+Definitions (Contains regular definitions and patterns)
+%%
+    Rules (Contains patterns and corresponding actions)
+%%
+User defined functions
+________________________________
+# Common Regular Expressions
+[0-9]	Any digit
+[a-z]	Lowercase letter
+[A-Z]	Uppercase letter
+[a-zA-Z]	Any alphabet
+[0-9]+	One or more digits
+[a-zA-Z]+	One or more letters
+[a-zA-Z0-9]+	Letters or digits
+.	Any character except newline
+\n	Newline
+\t	Tab
++	One or more repetitions
+*	Zero or more repetitions
+________________________________
+
+@-> What is YACC?
+YACC stands for Yet Another Compiler Compiler.
+It is a tool used to generate a parser for syntax analysis.
+LEX identifies tokens, whereas YACC checks whether those tokens follow the grammar rules of a language.
+________________________________
+# Structure:-
+%{
+    C declarations
+%}
+YACC declarations
+%%
+    Grammar rules
+%%
+User defined functions
+________________________________
+# Important YACC Terms
+yyparse() -> Starts syntax analysis
+yylex()	-> Gets tokens from LEX
+yyerror() -> Handles syntax errors
+yylval	-> Passes token values from LEX to YACC
+$$	-> Value of the left-hand side
+$1, $2	-> Values of grammar symbols on the right-hand side
+________________________________
