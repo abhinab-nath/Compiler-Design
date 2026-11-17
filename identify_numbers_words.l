@@ -1,16 +1,30 @@
+/* Lex program to display keywords, numbers, and words in given statement*/
+
 %{
 #include <stdio.h>
 %}
 
 %%
-[0-9]+       printf("Number: %s\n", yytext);
-[a-zA-Z]+    printf("Word: %s\n", yytext);
-[ \t\n]+     ;
-.            printf("Special Character: %s\n", yytext);
+"int"|"float"|"char"|"double"|"if"|"else"|"while"|"for"|"return" {
+    printf("Keyword: %s\n",yytext);
+}
+[0-9]+ {
+    printf("Number: %s\n", yytext);
+}
+[a-zA-Z]+ {
+    printf("Word: %s\n", yytext);
+}
+[ \t\n]+  ;
+.         ;
 %%
 
 int main()
 {
+    printf("\n Enter the string: ");
     yylex();
     return 0;
+}
+
+int yywrap(){
+    return 1;
 }

@@ -4,7 +4,7 @@
     .\a.exe            (for powershell)
 ________________________________
 --> running YACC program:
-    flex program_name.y
+    flex program_name.l
     bison -dy program_name.y
     gcc lex.yy.c y.tab.c
     .\a.exe
